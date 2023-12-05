@@ -1,9 +1,5 @@
 import { useState } from "react";
 
-type Props = {
-  value: string;
-};
-
 export default function Board() {
   return (
     <>
@@ -13,8 +9,6 @@ export default function Board() {
         <Square />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
         <Square />
         <Square />
         <Square />
