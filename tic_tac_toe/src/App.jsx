@@ -2,20 +2,20 @@ import { useState } from "react";
 
 export default function Game() {
 
-  // 手順が偶数の時はX、奇数の時はOのターン
-  const xIsNext = currentMove % 2 === 0;
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [currentMove, setCurrentMove] = useState(0);
-  const currentSquares = history[currentMove];
+  const [turnCount, setTurnCount] = useState(0);
+  const currentSquares = history[turnCount];
+    // 手順が偶数の時はX、奇数の時はOのターン
+    const turn = turnCount % 2 === 0;
 
   function handlePlay(nextSquares) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextHistory = [...history.slice(0, turnCount + 1), nextSquares];
     setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
+    setTurnCount(nextHistory.length - 1);
   }
 
   function jumpTo(nextMove) {
-    setCurrentMove(nextMove);
+    setTurnCount(nextMove);
   }
 
   const moves = history.map((squares, move) => {
@@ -35,7 +35,7 @@ export default function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+        <Board turn={turn} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
@@ -44,14 +44,14 @@ export default function Game() {
   );
 }
 
-export function Board({ xIsNext, squares, onPlay }) {
+export function Board({ turn, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
     status = "Winner: " + winner;
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = "Next player: " + (turn ? "X" : "O");
   }
 
   function handleClick(i) {
@@ -60,7 +60,7 @@ export function Board({ xIsNext, squares, onPlay }) {
     }
 
     const nextSquares = squares.slice();
-    if (xIsNext) {
+    if (turn) {
       nextSquares[i] = "X";
     } else {
       nextSquares[i] = "O";
