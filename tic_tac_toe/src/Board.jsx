@@ -1,7 +1,6 @@
 export default function Board({ turn, squares, onPlay }) {
 
-  const winner = calculateWinner(squares);
-  const winnerLine = calculateWinnerLine(squares);
+  const {winner, winnerLine} = calculateWinner(squares);
 
   let status;
   if (winner) {
@@ -11,7 +10,9 @@ export default function Board({ turn, squares, onPlay }) {
   }
 
   function handleClick(i) {
-    if (squares[i] || calculateWinner(squares)) {
+
+    const {winner, winnerLine} = calculateWinner(squares);
+    if (squares[i] || winner) {
       return;
     }
 
@@ -75,28 +76,8 @@ function calculateWinner(squares) {
     const [a, b, c] = lines[i];
     // squares[a]がnullのときは条件がtrueにならない
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {winner: squares[a], winnerLine:[a,b,c]}
     }
   }
-  return null;
-}
-
-function calculateWinnerLine(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return [a,b,c]
-    }
-  }
-  return Array(3).fill(null);
+  return {winner: null, winnerLine:[null, null, null]}
 }
