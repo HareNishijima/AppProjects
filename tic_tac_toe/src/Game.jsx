@@ -24,6 +24,12 @@ export default function Game() {
   }
 
   const moves = history.map((squares, move) => {
+
+    // hisotrySortDescで並び順が反転する
+    if (historySortDesc){
+      move = history.length - move -1;
+    }
+
     let description;
     if (move > 0) {
       description = 'Go to move #' + move;
