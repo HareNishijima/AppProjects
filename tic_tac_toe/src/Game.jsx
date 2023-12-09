@@ -8,6 +8,7 @@ export default function Game() {
   const currentSquares = history[turnCount];
   // 手順が偶数の時はX、奇数の時はOのターン
   const turn = turnCount % 2 === 0;
+  const [historySortDesc, setHistorSortDesc] = useState(false);
 
   function handlePlay(nextSquares) {
     // jumpToで過去のターンに戻った時、それ以降の内容はすべて削除される
@@ -36,6 +37,10 @@ export default function Game() {
     );
   });
 
+  function handlehistorySortDesc(){
+    setHistorSortDesc(!historySortDesc);
+  }
+
   return (
     <div className="game">
       <div className="game-board">
@@ -44,6 +49,14 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
         <ul>You are at turn #{turnCount + 1}</ul>
+      </div>
+      <div>
+        HistoryToggle
+        <input
+        type="checkbox"
+        checked={historySortDesc}
+        onChange={handlehistorySortDesc}
+      />
       </div>
     </div>
   );
