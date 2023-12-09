@@ -43,6 +43,7 @@ export default function Game() {
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
+        <ul>You are at turn #{turnCount + 1}</ul>
       </div>
     </div>
   );
