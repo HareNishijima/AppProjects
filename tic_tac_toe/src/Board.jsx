@@ -1,6 +1,8 @@
 export default function Board({ turn, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
+  const winnerLine = calculateWinnerLine(squares);
+
   let status;
   if (winner) {
     status = "Winner: " + winner;
@@ -30,7 +32,8 @@ export default function Board({ turn, squares, onPlay }) {
             <div className="board-row" key={i}>
             {
               Array(3).fill(0).map((_v, j)=>(
-                  <Square value = { squares[i*3+j] } onSquareClick={() => handleClick(i*3+j)} key={j} />
+                <Square value = { squares[i*3+j] } onSquareClick={() => handleClick(i*3+j)} 
+                  winnerLine = {winnerLine.some((w) => w == i*3+j)} key={j} />
               ))
             }
           </div>
@@ -40,12 +43,21 @@ export default function Board({ turn, squares, onPlay }) {
   );
 }
 
-function Square({value, onSquareClick}) {
-  return (
-    <button className="square" onClick={onSquareClick}>
-      {value}
-    </button>
-  );
+function Square({value, onSquareClick, winnerLine}) {
+  if(winnerLine){
+    const cssString = {backgroundColor: 'yellow'};
+    return (
+      <button style={cssString} className="square" onClick={onSquareClick}>
+        {value}
+      </button>
+    )
+  }else{
+    return (
+      <button className="square" onClick={onSquareClick}>
+        {value}
+      </button>
+    );
+  }
 }
 
 function calculateWinner(squares) {
@@ -67,4 +79,24 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function calculateWinnerLine(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return [a,b,c]
+    }
+  }
+  return Array(3).fill(null);
 }
