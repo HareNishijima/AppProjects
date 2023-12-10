@@ -3,16 +3,16 @@ import Board from './Board.jsx'
 
 export default function Game() {
 
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState([{square: Array(9).fill(null), row: null, col: null}]);
   const [turnCount, setTurnCount] = useState(0);
-  const currentSquares = history[turnCount];
+  const currentSquares = history[turnCount].square;
   // 手順が偶数の時はX、奇数の時はOのターン
   const turn = turnCount % 2 === 0;
   const [historySortDesc, setHistorSortDesc] = useState(false);
 
   function handlePlay(nextSquares) {
     // jumpToで過去のターンに戻った時、それ以降の内容はすべて削除される
-    const nextHistory = [...history.slice(0, turnCount + 1), nextSquares];
+    const nextHistory = [...history.slice(0, turnCount + 1), {square: nextSquares, row: null, col: null}];
     setHistory(nextHistory);
     setTurnCount(nextHistory.length - 1);
   }
