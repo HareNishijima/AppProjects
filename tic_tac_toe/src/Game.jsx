@@ -10,9 +10,9 @@ export default function Game() {
   const turn = turnCount % 2 === 0;
   const [historySortDesc, setHistorSortDesc] = useState(false);
 
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares, targetRow, targetCol) {
     // jumpToで過去のターンに戻った時、それ以降の内容はすべて削除される
-    const nextHistory = [...history.slice(0, turnCount + 1), {square: nextSquares, row: null, col: null}];
+    const nextHistory = [...history.slice(0, turnCount + 1), {square: nextSquares, row:  targetRow, col: targetCol}];
     setHistory(nextHistory);
     setTurnCount(nextHistory.length - 1);
   }

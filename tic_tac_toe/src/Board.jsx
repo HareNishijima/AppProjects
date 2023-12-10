@@ -11,20 +11,21 @@ export default function Board({ turn, turnCount, squares, onPlay }) {
     status = "Draw";
   }
 
-  function handleClick(i) {
+  function handleClick(i, j) {
 
+    let squaresIdx = i*3+j;
     const {winner, winnerLine} = calculateWinner(squares);
-    if (squares[i] || winner) {
+    if (squares[squaresIdx] || winner) {
       return;
     }
 
     const nextSquares = squares.slice();
     if (turn) {
-      nextSquares[i] = "X";
+      nextSquares[squaresIdx] = "X";
     } else {
-      nextSquares[i] = "O";
+      nextSquares[squaresIdx] = "O";
     }
-    onPlay(nextSquares);
+    onPlay(nextSquares, i, j);
   }
 
   return (
@@ -35,7 +36,7 @@ export default function Board({ turn, turnCount, squares, onPlay }) {
             <div className="board-row" key={i}>
             {
               Array(3).fill(0).map((_v, j)=>(
-                <Square value = { squares[i*3+j] } onSquareClick={() => handleClick(i*3+j)} 
+                <Square value = { squares[i*3+j] } onSquareClick={() => handleClick(i, j)} 
                   winnerLine = {winnerLine.some((w) => w == i*3+j)} key={j} />
               ))
             }
