@@ -32,7 +32,7 @@ export default function Game() {
 
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = `Go to move #${move} [${squares.row}:${squares.col}]`;
     } else {
       description = 'Go to game start';
     }
@@ -59,10 +59,10 @@ export default function Game() {
       <div>
         HistoryToggle
         <input
-        type="checkbox"
-        checked={historySortDesc}
-        onChange={handlehistorySortDesc}
-      />
+          type="checkbox"
+          checked={historySortDesc}
+          onChange={handlehistorySortDesc}
+        />
       </div>
     </div>
   );
