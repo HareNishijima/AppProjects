@@ -1,12 +1,14 @@
-export default function Board({ turn, squares, onPlay }) {
+export default function Board({ turn, turnCount, squares, onPlay }) {
 
   const {winner, winnerLine} = calculateWinner(squares);
 
   let status;
   if (winner) {
     status = "Winner: " + winner;
-  } else {
+  } else if(turnCount != 9){
     status = "Next player: " + (turn ? "X" : "O");
+  } else{
+    status = "Draw";
   }
 
   function handleClick(i) {

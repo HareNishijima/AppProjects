@@ -50,7 +50,7 @@ export default function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board turn={turn} squares={currentSquares} onPlay={handlePlay}/>
+        <Board turn={turn} turnCount={turnCount} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
