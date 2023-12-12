@@ -4,5 +4,6 @@ use std::num::ParseIntError;
 mod tests;
 
 pub fn parsei32(input: &str)->Result<i32, ParseIntError>{
-	todo!();
+	let res = input.trim().parse::<i32>()?;
+	Ok(res)
 }
