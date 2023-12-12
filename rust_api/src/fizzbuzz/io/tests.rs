@@ -1,12 +1,13 @@
 use super::*;
 
 #[test]
-fn 入力値を出力する(){
+fn 入力値を数値にパースできる(){
 	// given
+	let input = "1";
 
 	// when
-	let res = input();
+	let res = parsei32(input).unwrap();
 
 	// then
-	assert!(res.is_ok());
+	assert_eq!(res, 1);
 }
