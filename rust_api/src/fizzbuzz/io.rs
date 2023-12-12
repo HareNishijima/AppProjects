@@ -1,6 +1,6 @@
-#[cfg(tests)]
+#[cfg(test)]
 mod tests;
 
-pub fn io(){
-	//todo!();
+pub fn input()->Result<i64, ()>{
+	todo!();
 }
