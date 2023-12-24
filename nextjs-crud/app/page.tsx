@@ -5,12 +5,12 @@ export default function Top() {
     {
       id: 1,
       top: "😀",
-      content: "content1",
+      content: `content1\ncontent2\ncontent3`,
     },
     {
       id: 2,
       top: "😥",
-      content: "content2",
+      content: "content1\ncontent2",
     },
     {
       id: 3,
@@ -41,8 +41,8 @@ export default function Top() {
             {posts.map((post) => (
               <div className="py-2">
                 <li className="bg-white border rounded flex items-center" key={post.id}>
-                  <div className="text-4xl p-4">{post.top}</div>
-                  <div className="text-xl">{post.content}</div>
+                  <div className="text-4xl p-4 ">{post.top}</div>
+                  <div className="text-xl py-2 whitespace-pre-wrap">{post.content}</div>
                 </li>
               </div>
             ))}
