@@ -28,9 +28,18 @@ export default function Top() {
       </header>
       <div className="flex justify-center">
         <div className="max-w-md w-full">
+          <div className="py-2">
+            <div className="bg-white border rounded flex items-center">
+              <div className="text-4xl p-4">❓</div>
+              <input type="text" className="text-xl" placeholder="inputText" />
+            </div>
+          </div>
+
+          <div className="w-full border my-1"></div>
+
           <ul>
             {posts.map((post) => (
-              <div className="p-2">
+              <div className="py-2">
                 <li className="bg-white border rounded flex items-center" key={post.id}>
                   <div className="text-4xl p-4">{post.top}</div>
                   <div className="text-xl">{post.content}</div>
