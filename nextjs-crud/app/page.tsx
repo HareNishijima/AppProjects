@@ -31,7 +31,7 @@ export default function Top() {
           <div className="py-2">
             <div className="bg-white border rounded flex items-center">
               <div className="text-4xl p-4">❓</div>
-              <input type="text" className="text-xl" placeholder="inputText" />
+              <input type="text" className="text-xl outline-none" placeholder="inputText" />
             </div>
           </div>
 
