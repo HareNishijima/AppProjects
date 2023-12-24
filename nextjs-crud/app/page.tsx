@@ -1,6 +1,24 @@
 import Link from "next/link";
 
 export default function Top() {
+  const posts = [
+    {
+      id: 1,
+      top: "😀",
+      content: "content1",
+    },
+    {
+      id: 2,
+      top: "😥",
+      content: "content2",
+    },
+    {
+      id: 3,
+      top: "😎",
+      content: "content3",
+    },
+  ];
+
   return (
     <main>
       <header className="flex bg-sky-400">
@@ -11,12 +29,14 @@ export default function Top() {
       <div className="flex justify-center">
         <div className="max-w-md w-full">
           <ul>
-            <li className="bg-white border rounded flex items-center">
-              <div className="text-4xl p-4">😀</div>
-              <div className="text-xl">content</div>
-            </li>
-            <li className="bg-white border rounded">b</li>
-            <li className="bg-white border rounded">c</li>
+            {posts.map((post) => (
+              <div className="p-2">
+                <li className="bg-white border rounded flex items-center" key={post.id}>
+                  <div className="text-4xl p-4">{post.top}</div>
+                  <div className="text-xl">{post.content}</div>
+                </li>
+              </div>
+            ))}
           </ul>
         </div>
       </div>
