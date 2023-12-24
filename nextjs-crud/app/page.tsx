@@ -9,11 +9,13 @@ export default function Top() {
         </Link>
       </header>
       <div className="flex justify-center">
-        <ul className="max-w-md">
-          <li className="w-16 bg-white border rounded">a</li>
-          <li className="w-16 bg-white border rounded">b</li>
-          <li className="w-16 bg-white border rounded">c</li>
-        </ul>
+        <div className="max-w-md w-full">
+          <ul>
+            <li className="bg-white border rounded">a</li>
+            <li className="bg-white border rounded">b</li>
+            <li className="bg-white border rounded">c</li>
+          </ul>
+        </div>
       </div>
     </main>
   );
