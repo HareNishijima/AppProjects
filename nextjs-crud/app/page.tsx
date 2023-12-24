@@ -4,12 +4,12 @@ export default function Top() {
   const posts = [
     {
       id: 1,
-      top: "😀",
+      top: "🕳",
       content: `content1\ncontent2\ncontent3`,
     },
     {
       id: 2,
-      top: "😥",
+      top: "❗",
       content: "content1\ncontent2",
     },
     {
