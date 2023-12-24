@@ -29,9 +29,17 @@ export default function Top() {
       <div className="flex justify-center">
         <div className="max-w-md w-full">
           <div className="py-2">
-            <div className="bg-white border rounded flex items-center">
-              <div className="text-4xl p-4">❓</div>
-              <input type="text" className="text-xl outline-none" placeholder="inputText" />
+            <div className="flex bg-white border rounded p-2">
+              <div className="flex justify-center items-center h-14 w-14">
+                <div className="text-4xl">❓</div>
+              </div>
+              <div className="flex">
+                <input
+                  type="text"
+                  className="text-xl h-full whitespace-pre-wrap outline-none"
+                  placeholder="inputText"
+                />
+              </div>
             </div>
           </div>
 
