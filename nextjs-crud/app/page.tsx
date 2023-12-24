@@ -11,7 +11,10 @@ export default function Top() {
       <div className="flex justify-center">
         <div className="max-w-md w-full">
           <ul>
-            <li className="bg-white border rounded">a</li>
+            <li className="bg-white border rounded flex items-center">
+              <div className="text-4xl p-4">😀</div>
+              <div className="text-xl">content</div>
+            </li>
             <li className="bg-white border rounded">b</li>
             <li className="bg-white border rounded">c</li>
           </ul>
