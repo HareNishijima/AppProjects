@@ -47,8 +47,8 @@ export default function Top() {
 
           <ul>
             {posts.map((post) => (
-              <div className="py-2">
-                <li className="flex bg-white border rounded p-2" key={post.id}>
+              <div className="py-2" key={post.id}>
+                <li className="flex bg-white border rounded p-2">
                   <div className="flex justify-center items-center h-14 w-14">
                     <div className="text-4xl">{post.top}</div>
                   </div>
