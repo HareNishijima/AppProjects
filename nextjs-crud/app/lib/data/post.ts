@@ -13,7 +13,6 @@ export async function getPosts(){
 
   try {
     const data = await sql<Post>`SELECT * FROM posts`;
-		console.log(data);
     return data.rows;
   } catch (e) {
     console.error(e);
