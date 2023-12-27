@@ -1,23 +1,8 @@
 import Link from "next/link";
+import { getPosts, Post } from "./lib/data/post";
 
-export default function Top() {
-  const posts = [
-    {
-      id: 1,
-      top: "🕳",
-      content: `content1\ncontent2\ncontent3`,
-    },
-    {
-      id: 2,
-      top: "❗",
-      content: "content1\ncontent2",
-    },
-    {
-      id: 3,
-      top: "😎",
-      content: "content3",
-    },
-  ];
+export default async function Top() {
+  const posts: Post[] = await getPosts();
 
   return (
     <main>
@@ -46,8 +31,8 @@ export default function Top() {
           <div className="w-full border my-1"></div>
 
           <ul>
-            {posts.map((post) => (
-              <div className="py-2" key={post.id}>
+            {posts?.map((post, idx) => (
+              <div className="py-2" key={idx}>
                 <li className="flex bg-white border rounded p-2">
                   <div className="flex justify-center items-center h-14 w-14">
                     <div className="text-4xl">{post.top}</div>
