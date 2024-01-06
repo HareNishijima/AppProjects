@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { getPosts, Post } from "./lib/data/post";
+import { getPosts, PostData } from "./lib/data/post";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import Post from "@/components/posts";
 
 export default async function Top() {
-  const posts: Post[] = await getPosts();
+  const posts: PostData[] = await getPosts();
 
   return (
     <main>
@@ -39,20 +40,8 @@ export default async function Top() {
 
           <div className="w-full border my-1"></div>
 
-          <ul>
-            {posts?.map((post, idx) => (
-              <div className="py-2" key={idx}>
-                <li className="flex bg-white border rounded p-2">
-                  <div className="flex justify-center items-center h-14 w-14">
-                    <div className="text-4xl">{post.top}</div>
-                  </div>
-                  <div className="flex">
-                    <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
-                  </div>
-                </li>
-              </div>
-            ))}
-          </ul>
+          <Post posts={posts} />
+
         </div>
       </div>
     </main>
