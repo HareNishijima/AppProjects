@@ -11,8 +11,8 @@ export const Form = () => {
     const top: string = "😀";
     const content: string = typeof formData.get("content") === "string" ? (formData.get("content") as string) : "";
 
-    const result = await postPosts(top, content);
-    console.log(result);
+    //const result = await postPosts(top, content);
+    //console.log(result);
   };
 
   return (

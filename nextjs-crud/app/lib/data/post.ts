@@ -1,5 +1,4 @@
 import { sql } from '@vercel/postgres';
-const { db } = require("@vercel/postgres");
 import { unstable_noStore as noStore } from 'next/cache';
 const { v4 } = require("uuid");
 
@@ -10,7 +9,6 @@ export type PostData = {
 };
 
 export async function getPosts(){
-
   noStore();
 
   try {
@@ -23,11 +21,11 @@ export async function getPosts(){
 }
 
 export async function postPosts(top :string, content: string){
+  noStore();
   const uuid = v4();
 
   try {
-    console.log(uuid, top, content);
-    
+    // .envの中身が取得出来ないので実行不可
     const data = await sql<PostData>`INSERT INTO posts VALUES(${uuid}, ${top}, ${content})`;
     return data.rows;
   } catch (e) {
