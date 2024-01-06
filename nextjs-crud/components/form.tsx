@@ -1,6 +1,6 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
-export default function Form() {
+export const Form = () => {
   return (
     <div className="py-2">
       <div className="bg-white border rounded p-2">

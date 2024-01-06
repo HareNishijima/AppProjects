@@ -4,7 +4,7 @@ type PropsData = {
   posts: PostData[];
 };
 
-export default async function Post(props: PropsData) {
+export const Post = (props: PropsData) => {
   let posts: PostData[] = props.posts;
 
   return (
@@ -23,4 +23,4 @@ export default async function Post(props: PropsData) {
       ))}
     </ul>
   );
-}
+};

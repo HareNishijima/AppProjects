@@ -1,7 +1,7 @@
 import { getPosts, PostData } from "./lib/data/post";
 
-import Post from "@/components/posts";
-import Form from "@/components/form";
+import { Post } from "@/components/posts";
+import { Form } from "@/components/form";
 
 export default async function Top() {
   const posts: PostData[] = await getPosts();
@@ -19,4 +19,4 @@ export default async function Top() {
       </div>
     </main>
   );
-}
+};
