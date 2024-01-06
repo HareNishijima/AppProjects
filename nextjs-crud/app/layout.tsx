@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +13,15 @@ export const metadata: Metadata = {
 export default function TopLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="flex bg-sky-400">
+          <Link href="/">
+            <div className="flex items-center text-3xl m-3 font-bold text-white">CRUD App</div>
+          </Link>
+        </header>
+
+        {children}
+      </body>
     </html>
   );
 }

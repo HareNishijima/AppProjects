@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getPosts, PostData } from "./lib/data/post";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import Post from "@/components/posts";
@@ -8,11 +7,6 @@ export default async function Top() {
 
   return (
     <main>
-      <header className="flex bg-sky-400">
-        <Link href="/">
-          <div className="flex items-center text-3xl m-3 font-bold text-white">CRUD App</div>
-        </Link>
-      </header>
       <div className="flex justify-center">
         <div className="max-w-md w-full">
           <div className="py-2">
