@@ -11,8 +11,19 @@ export const Form = () => {
     const top: string = "😀";
     const content: string = typeof formData.get("content") === "string" ? (formData.get("content") as string) : "";
 
-    //const result = await postPosts(top, content);
-    //console.log(result);
+    const bodyData = {
+      top: top,
+      content: content,
+    };
+
+    const res = await fetch("/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyData),
+    });
+    console.log(res);
   };
 
   return (
