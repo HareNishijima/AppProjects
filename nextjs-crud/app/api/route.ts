@@ -1,11 +1,9 @@
 import { NextRequest } from "next/server"
-import { postPosts } from '../lib/data/post';
+import { getPosts, postPosts } from '../lib/data/post';
 
 export async function GET() {
-  const data = {
-    message : "hello"
-  };
-  return Response.json(data)
+  const result = await getPosts();
+  return Response.json(result)
 }
 
 export async function POST(req: NextRequest) {

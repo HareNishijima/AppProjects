@@ -1,10 +1,19 @@
+"use client";
 import { getPosts, PostData } from "./lib/data/post";
 
 import { Post } from "@/components/posts";
 import { Form } from "@/components/form";
+import { useEffect, useState } from "react";
 
-export default async function Top() {
-  const posts: PostData[] = await getPosts();
+export default function Top() {
+  const [posts, setPosts] = useState<PostData[]>([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("api");
+      const posts = await res.json();
+      setPosts(posts);
+    })();
+  }, []);
 
   return (
     <main>
@@ -19,4 +28,4 @@ export default async function Top() {
       </div>
     </main>
   );
-};
+}

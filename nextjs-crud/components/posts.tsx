@@ -1,3 +1,4 @@
+"use client";
 import { PostData } from "../app/lib/data/post";
 
 type PropsData = {
