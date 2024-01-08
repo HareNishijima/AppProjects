@@ -3,7 +3,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { PostData, postPosts } from "@/app/lib/data/post";
 import { FormEvent } from "react";
 
-export const Form = () => {
+export const Form = (props: { loadPosts: () => void }) => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -24,6 +24,7 @@ export const Form = () => {
       body: JSON.stringify(bodyData),
     });
     console.log(res);
+    await props.loadPosts();
   };
 
   return (
