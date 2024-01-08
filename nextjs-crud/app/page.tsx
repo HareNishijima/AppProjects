@@ -6,12 +6,15 @@ import { Form } from "@/components/form";
 import { useEffect, useState } from "react";
 
 export default function Top() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [posts, setPosts] = useState<PostData[]>([]);
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       const res = await fetch("api");
       const posts = await res.json();
       setPosts(posts);
+      setIsLoading(false);
     })();
   }, []);
 
@@ -23,7 +26,7 @@ export default function Top() {
 
           <div className="w-full border my-1"></div>
 
-          <Post posts={posts} />
+          {isLoading ? <div>loading</div> : <Post posts={posts} />}
         </div>
       </div>
     </main>
