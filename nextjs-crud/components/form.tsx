@@ -6,10 +6,17 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
 export const Form = (props: { loadPosts: () => void }) => {
+  const [emojiPickerEnabled, setEmojiPickerEnabled] = useState<boolean>(false);
   const [postTop, setPostTop] = useState<string>("😀");
 
   const handleEmojiSelect = (emoji: any) => {
     setPostTop(emoji.native);
+    setEmojiPickerEnabled(false);
+  };
+
+  const handleEmojiPicker = () => {
+    const nextEmojiPickerEnabled = !emojiPickerEnabled;
+    setEmojiPickerEnabled(nextEmojiPickerEnabled);
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -40,18 +47,21 @@ export const Form = (props: { loadPosts: () => void }) => {
       <div className="py-2">
         <div className="bg-white border rounded p-2">
           <div className="flex">
-            <div className="flex justify-center items-center h-14 w-14">
-              <div className="text-4xl">{postTop}</div>
+            <div className="relative flex justify-center items-center h-14 w-14">
+              <button type="button" onClick={handleEmojiPicker} className="text-4xl">
+                {postTop}
+              </button>
+              <div className="absolute top-14 left-0">
+                {emojiPickerEnabled ? <Picker onEmojiSelect={handleEmojiSelect} /> : <></>}
+              </div>
             </div>
             <div className="flex">
-              <input
-                type="text"
+              <textarea
                 name="content"
                 className="text-xl h-full whitespace-pre-wrap outline-none"
                 placeholder="inputText"
               />
             </div>
-            <Picker className="static" onEmojiSelect={handleEmojiSelect} />
           </div>
           <div className="flex justify-end">
             <button type="submit" className="bg-sky-400 rounded-full w-16 h-8 flex justify-center">
