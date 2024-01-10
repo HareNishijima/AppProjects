@@ -1,14 +1,22 @@
 "use client";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { PostData, postPosts } from "@/app/lib/data/post";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 export const Form = (props: { loadPosts: () => void }) => {
+  const [postTop, setPostTop] = useState<string>("😀");
+
+  const handleEmojiSelect = (emoji: any) => {
+    setPostTop(emoji.native);
+  };
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    const top: string = "😀";
+    const top: string = postTop;
     const content: string = typeof formData.get("content") === "string" ? (formData.get("content") as string) : "";
 
     const bodyData = {
@@ -33,7 +41,7 @@ export const Form = (props: { loadPosts: () => void }) => {
         <div className="bg-white border rounded p-2">
           <div className="flex">
             <div className="flex justify-center items-center h-14 w-14">
-              <div className="text-4xl">❓</div>
+              <div className="text-4xl">{postTop}</div>
             </div>
             <div className="flex">
               <input
@@ -43,6 +51,7 @@ export const Form = (props: { loadPosts: () => void }) => {
                 placeholder="inputText"
               />
             </div>
+            <Picker className="static" onEmojiSelect={handleEmojiSelect} />
           </div>
           <div className="flex justify-end">
             <button type="submit" className="bg-sky-400 rounded-full w-16 h-8 flex justify-center">
