@@ -9,6 +9,10 @@ type PropsData = {
 export const Post = (props: PropsData) => {
   let posts: PostData[] = props.posts;
 
+  const handleDeleteButton = (id: string) => {
+    console.log(id);
+  };
+
   return (
     <ul>
       {posts?.map((post, idx) => (
@@ -21,7 +25,7 @@ export const Post = (props: PropsData) => {
               <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
             </div>
             <div className="flex flex-col justify-end">
-              <button>
+              <button onClick={() => handleDeleteButton(post.id)}>
                 <TrashIcon className="h-6 w-6 text-gray-400" />
               </button>
             </div>

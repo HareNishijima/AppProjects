@@ -3,9 +3,9 @@ import { unstable_noStore as noStore } from 'next/cache';
 const { v4 } = require("uuid");
 
 export type PostData = {
-	id: String,
-	top: String,
-	content: String,
+	id: string,
+	top: string,
+	content: string,
 };
 
 export async function getPosts(){
