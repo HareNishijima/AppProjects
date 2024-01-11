@@ -20,8 +20,10 @@ export const Post = (props: PropsData) => {
             <div className="flex grow">
               <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
             </div>
-            <div className="flex items-end">
-              <TrashIcon className="h-6 w-6 text-gray-400" />
+            <div className="flex flex-col justify-end">
+              <button>
+                <TrashIcon className="h-6 w-6 text-gray-400" />
+              </button>
             </div>
           </li>
         </div>
