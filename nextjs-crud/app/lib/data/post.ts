@@ -25,8 +25,19 @@ export async function postPosts(top :string, content: string){
   const uuid = v4();
 
   try {
-    // .envの中身が取得出来ないので実行不可
     const data = await sql<PostData>`INSERT INTO posts VALUES(${uuid}, ${top}, ${content})`;
+    return data.rows;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
+export async function deletePost(id: string){
+  noStore();
+
+  try {
+    const data = await sql<PostData>`DELETE FROM posts WHERE id = ${id}`;
     return data.rows;
   } catch (e) {
     console.error(e);
