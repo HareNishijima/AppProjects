@@ -9,8 +9,17 @@ type PropsData = {
 export const Post = (props: PropsData) => {
   let posts: PostData[] = props.posts;
 
-  const handleDeleteButton = (id: string) => {
-    console.log(id);
+  const handleDeleteButton = async (id: string) => {
+    const res = await fetch("/api", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    });
+    console.log(res);
   };
 
   return (
