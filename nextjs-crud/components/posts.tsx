@@ -4,10 +4,12 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 
 type PropsData = {
   posts: PostData[];
+  loadPosts: () => void;
 };
 
 export const Post = (props: PropsData) => {
   let posts: PostData[] = props.posts;
+  const loadPosts: () => void = props.loadPosts;
 
   const handleDeleteButton = async (id: string) => {
     const res = await fetch("/api", {
@@ -20,6 +22,7 @@ export const Post = (props: PropsData) => {
       }),
     });
     console.log(res);
+    await loadPosts();
   };
 
   return (

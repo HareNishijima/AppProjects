@@ -31,7 +31,7 @@ export default function Top() {
 
           <div className="w-full border my-1"></div>
 
-          {isLoading ? <div>loading</div> : <Post posts={posts} />}
+          {isLoading ? <div>loading</div> : <Post posts={posts} loadPosts={loadPosts}/>}
         </div>
       </div>
     </main>
