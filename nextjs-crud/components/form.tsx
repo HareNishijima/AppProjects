@@ -1,13 +1,14 @@
 "use client";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { PostData, postPosts } from "@/app/lib/data/post";
-import { FormEvent, useState } from "react";
+import { FormEvent, SetStateAction, useState } from "react";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
 export const Form = (props: { loadPosts: () => void }) => {
   const [emojiPickerEnabled, setEmojiPickerEnabled] = useState<boolean>(false);
   const [postTop, setPostTop] = useState<string>("😀");
+  const [postContent, setPostContent] = useState<string>("");
 
   const handleEmojiSelect = (emoji: any) => {
     setPostTop(emoji.native);
@@ -17,6 +18,10 @@ export const Form = (props: { loadPosts: () => void }) => {
   const handleEmojiPicker = () => {
     const nextEmojiPickerEnabled = !emojiPickerEnabled;
     setEmojiPickerEnabled(nextEmojiPickerEnabled);
+  };
+
+  const handlePostContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setPostContent(event.target.value);
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -39,6 +44,10 @@ export const Form = (props: { loadPosts: () => void }) => {
       body: JSON.stringify(bodyData),
     });
     console.log(res);
+
+    setPostTop("😀");
+    setPostContent("");
+
     await props.loadPosts();
   };
 
@@ -59,7 +68,9 @@ export const Form = (props: { loadPosts: () => void }) => {
               <textarea
                 name="content"
                 className="text-xl h-full whitespace-pre-wrap outline-none"
-                placeholder="inputText"
+                placeholder="input text"
+                value={postContent}
+                onChange={handlePostContent}
               />
             </div>
           </div>
