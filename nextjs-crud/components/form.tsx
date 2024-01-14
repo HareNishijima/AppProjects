@@ -20,10 +20,6 @@ export const Form = (props: { loadPosts: () => void }) => {
     setEmojiPickerEnabled(nextEmojiPickerEnabled);
   };
 
-  const handlePostContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setPostContent(event.target.value);
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -70,7 +66,7 @@ export const Form = (props: { loadPosts: () => void }) => {
                 className="text-xl h-full whitespace-pre-wrap outline-none"
                 placeholder="input text"
                 value={postContent}
-                onChange={handlePostContent}
+                onChange={(e) => setPostContent(e.target.value)}
               />
             </div>
           </div>

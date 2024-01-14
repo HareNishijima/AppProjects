@@ -31,7 +31,13 @@ export default function Top() {
 
           <div className="w-full border my-1"></div>
 
-          {isLoading ? <div>loading</div> : <Post posts={posts} loadPosts={loadPosts}/>}
+          {isLoading ? (
+            <div className="flex justify-center py-4">
+              <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent" />
+            </div>
+          ) : (
+            <Post posts={posts} loadPosts={loadPosts} />
+          )}
         </div>
       </div>
     </main>
