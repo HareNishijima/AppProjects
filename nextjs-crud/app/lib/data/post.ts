@@ -33,6 +33,18 @@ export async function postPosts(top :string, content: string){
   }
 }
 
+export async function updatePost(id: string, top :string, content: string){
+  noStore();
+
+  try {
+    const data = await sql<PostData>`UPDATE posts SET top = ${top}, content = ${content} WHERE id = ${id}`;
+    return data.rows;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+
 export async function deletePost(id: string){
   noStore();
 
