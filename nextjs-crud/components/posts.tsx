@@ -26,6 +26,23 @@ export const Post = (props: PropsData) => {
     await loadPosts();
   };
 
+  const handleUpdateButton = async (id: string) => {
+    const data = {
+      id: id,
+      top: "✏",
+      content: "updated",
+    };
+    const res = await fetch("/api", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(res);
+    await loadPosts();
+  };
+
   return (
     <ul>
       {posts?.map((post, idx) => (
@@ -38,7 +55,7 @@ export const Post = (props: PropsData) => {
               <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
             </div>
             <div className="flex gap-x-2 items-end">
-              <button>
+              <button onClick={() => handleUpdateButton(post.id)}>
                 <PencilIcon className="h-6 w-6 text-gray-400" />
               </button>
               <button onClick={() => handleDeleteButton(post.id)}>

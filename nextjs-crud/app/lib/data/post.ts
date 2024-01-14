@@ -37,7 +37,7 @@ export async function updatePost(id: string, top :string, content: string){
   noStore();
 
   try {
-    const data = await sql<PostData>`UPDATE posts SET top = ${top}, content = ${content} WHERE id = ${id}`;
+    const data = await sql<PostData>`UPDATE posts SET (top, content) = (${top}, ${content}) WHERE id = ${id}`;
     return data.rows;
   } catch (e) {
     console.error(e);
