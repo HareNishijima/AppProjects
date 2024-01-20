@@ -1,3 +1,8 @@
 export const App = () => {
-  return <>text</>;
+
+  return (
+    <>
+      text
+    </>
+  )
 };
