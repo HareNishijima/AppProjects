@@ -6,13 +6,14 @@ export type PostData = {
 	id: string,
 	top: string,
 	content: string,
+  created_at: string,
 };
 
 export async function getPosts(){
   noStore();
 
   try {
-    const data = await sql<PostData>`SELECT * FROM posts`;
+    const data = await sql<PostData>`SELECT * FROM posts ORDER BY created_at`;
     return data.rows;
   } catch (e) {
     console.error(e);
@@ -25,7 +26,7 @@ export async function postPosts(top :string, content: string){
   const uuid = v4();
 
   try {
-    const data = await sql<PostData>`INSERT INTO posts VALUES(${uuid}, ${top}, ${content})`;
+    const data = await sql<PostData>`INSERT INTO posts VALUES(${uuid}, ${top}, ${content}, CURRENT_TIMESTAMP)`;
     return data.rows;
   } catch (e) {
     console.error(e);
