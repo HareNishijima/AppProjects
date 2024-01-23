@@ -1,7 +1,7 @@
 "use client";
 import { getPosts, PostData } from "./lib/data/post";
 
-import { Post } from "@/components/posts";
+import { Post } from "@/components/post";
 import { Form } from "@/components/form";
 import { useEffect, useState } from "react";
 
@@ -43,7 +43,11 @@ export default function Top() {
               <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent" />
             </div>
           ) : (
-            <Post posts={posts} loadPosts={loadPosts} editPost={editPost} setEditPost={setEditPost} />
+            <ul>
+              {posts?.map((post, idx) => (
+                <Post post={post} loadPosts={loadPosts} editPost={editPost} setEditPost={setEditPost} key={idx}/>
+              ))}
+            </ul>
           )}
         </div>
       </div>

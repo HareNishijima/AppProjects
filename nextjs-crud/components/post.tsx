@@ -5,15 +5,16 @@ import { PencilIcon as PencilIconOutline}from "@heroicons/react/24/outline";
 import { PencilIcon as PencilIconSolid } from "@heroicons/react/24/solid";
 
 type PropsData = {
-  posts: PostData[];
+  post: PostData;
   loadPosts: () => void;
   editPost: boolean;
   setEditPost: (b: boolean) => void;
 };
 
-export const Post = (props: PropsData) => {
-  let posts: PostData[] = props.posts;
-  const loadPosts: () => void = props.loadPosts;
+export const Post = (props: PropsData)=>{
+
+	const post = props.post;
+	const loadPosts: () => void = props.loadPosts;
   let editPost = props.editPost;
   const setEditPost = props.setEditPost;
 
@@ -48,10 +49,9 @@ export const Post = (props: PropsData) => {
     await loadPosts();
   };
 
-  return (
-    <ul>
-      {posts?.map((post, idx) => (
-        <div className="py-2" key={idx}>
+	return(
+		<>
+			<div className="py-2">
           <li className="flex justify-between bg-white border rounded p-2">
             <div className="flex justify-center items-center h-14 w-14">
               <div className="text-4xl">{post.top}</div>
@@ -73,7 +73,6 @@ export const Post = (props: PropsData) => {
             </div>
           </li>
         </div>
-      ))}
-    </ul>
-  );
-};
+		</>
+	)
+}
