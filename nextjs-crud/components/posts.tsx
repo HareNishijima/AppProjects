@@ -6,11 +6,15 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 type PropsData = {
   posts: PostData[];
   loadPosts: () => void;
+  editPost: boolean;
+  setEditPost: (b: boolean) => void;
 };
 
 export const Post = (props: PropsData) => {
   let posts: PostData[] = props.posts;
   const loadPosts: () => void = props.loadPosts;
+  let editPost = props.editPost;
+  const setEditPost = props.setEditPost;
 
   const handleDeleteButton = async (id: string) => {
     const res = await fetch("/api", {
@@ -55,7 +59,7 @@ export const Post = (props: PropsData) => {
               <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
             </div>
             <div className="flex gap-x-2 items-end">
-              <button onClick={() => handleUpdateButton(post.id)}>
+              <button onClick={() => setEditPost(true)}>
                 <PencilIcon className="h-6 w-6 text-gray-400" />
               </button>
               <button onClick={() => handleDeleteButton(post.id)}>

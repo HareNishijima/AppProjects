@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export default function Top() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [posts, setPosts] = useState<PostData[]>([]);
+  const [editPost, setEditPost] = useState<boolean>(false);
 
   const loadPosts = async () => {
     setIsLoading(true);
@@ -23,6 +24,12 @@ export default function Top() {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      console.log(editPost);
+    })();
+  }, [editPost]);
+
   return (
     <main>
       <div className="flex justify-center">
@@ -36,7 +43,7 @@ export default function Top() {
               <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent" />
             </div>
           ) : (
-            <Post posts={posts} loadPosts={loadPosts} />
+            <Post posts={posts} loadPosts={loadPosts} editPost={editPost} setEditPost={setEditPost} />
           )}
         </div>
       </div>
