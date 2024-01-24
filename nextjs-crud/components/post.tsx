@@ -3,6 +3,7 @@ import { PostData } from "../app/lib/data/post";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { PencilIcon as PencilIconOutline } from "@heroicons/react/24/outline";
 import { PencilIcon as PencilIconSolid } from "@heroicons/react/24/solid";
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Picker from "@emoji-mart/react";
 
@@ -44,11 +45,11 @@ export const Post = (props: PropsData) => {
     await loadPosts();
   };
 
-  const handleUpdateButton = async (id: string) => {
+  const handleUpdateButton = async () => {
     const data = {
-      id: id,
-      top: "✏",
-      content: "updated",
+      id: post.id,
+      top: editTop,
+      content: editContent,
     };
     const res = await fetch("/api", {
       method: "PUT",
@@ -65,8 +66,8 @@ export const Post = (props: PropsData) => {
     <>
       {editPost ? (
         <div className="py-2">
-          <li className="flex justify-between bg-white border rounded p-2">
-            <div className="flex justify-center items-center h-14 w-14 border">
+          <li className="flex justify-between bg-blue-100 border rounded p-2">
+            <div className="flex justify-center items-center h-14 w-14">
               <button type="button" onClick={handleEmojiPicker} className="text-4xl">
                 {editTop}
               </button>
@@ -74,21 +75,31 @@ export const Post = (props: PropsData) => {
                 {emojiPickerEnabled ? <Picker onEmojiSelect={handleEmojiSelect} /> : <></>}
               </div>
             </div>
-            <div className="flex grow border">
+            <div className="flex grow">
               <textarea
                 name="content"
-                className="text-xl h-full whitespace-pre-wrap outline-none"
+                className="text-xl h-full whitespace-pre-wrap outline-none bg-blue-100"
                 placeholder="input text"
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
               />
             </div>
             <div className="flex gap-x-2 items-end">
-              <button onClick={() => setEditPost(!editPost)}>
+              <button
+                onClick={() => {
+                  setEditTop(post.top);
+                  setEditContent(post.content);
+                  setEditPost(false);
+                }}
+              >
                 <PencilIconSolid className="h-6 w-6 text-blue-400" />
               </button>
-              <button onClick={() => handleDeleteButton(post.id)}>
-                <TrashIcon className="h-6 w-6 text-gray-400" />
+              <button
+                type="submit"
+                onClick={() => handleUpdateButton()}
+                className="bg-sky-400 rounded-full w-16 h-8 flex justify-center"
+              >
+                <PaperAirplaneIcon className="w-6 h-full text-white" />
               </button>
             </div>
           </li>
@@ -103,7 +114,7 @@ export const Post = (props: PropsData) => {
               <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
             </div>
             <div className="flex gap-x-2 items-end">
-              <button onClick={() => setEditPost(!editPost)}>
+              <button onClick={() => setEditPost(true)}>
                 <PencilIconOutline className="h-6 w-6 text-gray-400" />
               </button>
               <button onClick={() => handleDeleteButton(post.id)}>
