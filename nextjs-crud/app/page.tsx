@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 export default function Top() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [posts, setPosts] = useState<PostData[]>([]);
-  const [editPost, setEditPost] = useState<boolean>(false);
 
   const loadPosts = async () => {
     setIsLoading(true);
@@ -23,12 +22,6 @@ export default function Top() {
       loadPosts();
     })();
   }, []);
-
-  useEffect(() => {
-    (async () => {
-      console.log(editPost);
-    })();
-  }, [editPost]);
 
   return (
     <main>
@@ -45,7 +38,7 @@ export default function Top() {
           ) : (
             <ul>
               {posts?.map((post, idx) => (
-                <Post post={post} loadPosts={loadPosts} editPost={editPost} setEditPost={setEditPost} key={idx}/>
+                <Post post={post} loadPosts={loadPosts} key={idx}/>
               ))}
             </ul>
           )}

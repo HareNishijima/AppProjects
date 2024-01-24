@@ -3,20 +3,18 @@ import { PostData } from "../app/lib/data/post";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { PencilIcon as PencilIconOutline}from "@heroicons/react/24/outline";
 import { PencilIcon as PencilIconSolid } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
 type PropsData = {
   post: PostData;
   loadPosts: () => void;
-  editPost: boolean;
-  setEditPost: (b: boolean) => void;
 };
 
 export const Post = (props: PropsData)=>{
-
 	const post = props.post;
 	const loadPosts: () => void = props.loadPosts;
-  let editPost = props.editPost;
-  const setEditPost = props.setEditPost;
+
+  const [editPost, setEditPost] = useState(false);
 
   const handleDeleteButton = async (id: string) => {
     const res = await fetch("/api", {
