@@ -1,20 +1,34 @@
 "use client";
 import { PostData } from "../app/lib/data/post";
 import { TrashIcon } from "@heroicons/react/24/outline";
-import { PencilIcon as PencilIconOutline}from "@heroicons/react/24/outline";
+import { PencilIcon as PencilIconOutline } from "@heroicons/react/24/outline";
 import { PencilIcon as PencilIconSolid } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import Picker from "@emoji-mart/react";
 
 type PropsData = {
   post: PostData;
   loadPosts: () => void;
 };
 
-export const Post = (props: PropsData)=>{
-	const post = props.post;
-	const loadPosts: () => void = props.loadPosts;
+export const Post = (props: PropsData) => {
+  const post = props.post;
+  const loadPosts: () => void = props.loadPosts;
 
   const [editPost, setEditPost] = useState(false);
+  const [editTop, setEditTop] = useState(post.top);
+  const [editContent, setEditContent] = useState(post.content);
+  const [emojiPickerEnabled, setEmojiPickerEnabled] = useState<boolean>(false);
+
+  const handleEmojiSelect = (emoji: any) => {
+    setEditTop(emoji.native);
+    setEmojiPickerEnabled(false);
+  };
+
+  const handleEmojiPicker = () => {
+    const nextEmojiPickerEnabled = !emojiPickerEnabled;
+    setEmojiPickerEnabled(nextEmojiPickerEnabled);
+  };
 
   const handleDeleteButton = async (id: string) => {
     const res = await fetch("/api", {
@@ -47,9 +61,40 @@ export const Post = (props: PropsData)=>{
     await loadPosts();
   };
 
-	return(
-		<>
-			<div className="py-2">
+  return (
+    <>
+      {editPost ? (
+        <div className="py-2">
+          <li className="flex justify-between bg-white border rounded p-2">
+            <div className="flex justify-center items-center h-14 w-14 border">
+              <button type="button" onClick={handleEmojiPicker} className="text-4xl">
+                {editTop}
+              </button>
+              <div className="absolute top-14 left-0">
+                {emojiPickerEnabled ? <Picker onEmojiSelect={handleEmojiSelect} /> : <></>}
+              </div>
+            </div>
+            <div className="flex grow border">
+              <textarea
+                name="content"
+                className="text-xl h-full whitespace-pre-wrap outline-none"
+                placeholder="input text"
+                value={editContent}
+                onChange={(e) => setEditContent(e.target.value)}
+              />
+            </div>
+            <div className="flex gap-x-2 items-end">
+              <button onClick={() => setEditPost(!editPost)}>
+                <PencilIconSolid className="h-6 w-6 text-blue-400" />
+              </button>
+              <button onClick={() => handleDeleteButton(post.id)}>
+                <TrashIcon className="h-6 w-6 text-gray-400" />
+              </button>
+            </div>
+          </li>
+        </div>
+      ) : (
+        <div className="py-2">
           <li className="flex justify-between bg-white border rounded p-2">
             <div className="flex justify-center items-center h-14 w-14">
               <div className="text-4xl">{post.top}</div>
@@ -59,11 +104,7 @@ export const Post = (props: PropsData)=>{
             </div>
             <div className="flex gap-x-2 items-end">
               <button onClick={() => setEditPost(!editPost)}>
-                {editPost ? (
-                  <PencilIconSolid className="h-6 w-6 text-blue-400" />
-                ) : (
-                  <PencilIconOutline className="h-6 w-6 text-gray-400" />
-                )}
+                <PencilIconOutline className="h-6 w-6 text-gray-400" />
               </button>
               <button onClick={() => handleDeleteButton(post.id)}>
                 <TrashIcon className="h-6 w-6 text-gray-400" />
@@ -71,6 +112,7 @@ export const Post = (props: PropsData)=>{
             </div>
           </li>
         </div>
-		</>
-	)
-}
+      )}
+    </>
+  );
+};
