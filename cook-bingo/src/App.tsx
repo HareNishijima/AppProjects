@@ -1,15 +1,18 @@
 import { Card } from "./components/Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const App = () => {
   const [check, setCheck] = useState(false);
   const [bingo, setBingo] = useState(Array(9).fill(0));
 
+  useEffect(() => {
+    bingoCheck();
+  }, [bingo]);
+
   const handleSetBingo = (n: number, i: number) => {
     const newBingo: number[] = [...bingo];
     newBingo[i] = n;
     setBingo(newBingo);
-    bingoCheck();
   };
 
   const handleResetBingo = () => {
@@ -33,6 +36,7 @@ export const App = () => {
         return;
       }
     }
+    setCheck(false);
   };
 
   return (
@@ -51,6 +55,15 @@ export const App = () => {
           <button className="w-1/4 h-8 shadow-md bg-orange-400 rounded  mt-4" onClick={handleResetBingo}>
             reset
           </button>
+          {check ? (
+            <div className="w-1/4 h-8 shadow-md bg-orange-400 rounded  mt-4" onClick={handleResetBingo}>
+              bingo!
+            </div>
+          ) : (
+            <div className="w-1/4 h-8 shadow-md bg-white rounded  mt-4" onClick={handleResetBingo}>
+              no bingo
+            </div>
+          )}
         </div>
       </div>
     </>
