@@ -1,22 +1,31 @@
 import { Card } from "./components/Card";
 import { useState, useEffect } from "react";
+import { bingoType } from "./data/data";
 
 export const App = () => {
   const [check, setCheck] = useState(false);
-  const [bingo, setBingo] = useState(Array(9).fill(0));
+  const [bingo, setBingo] = useState(
+    Array(9)
+      .fill(null)
+      .map(() => ({ num: 0, bingo: false }))
+  );
 
   useEffect(() => {
     bingoCheck();
   }, [bingo]);
 
   const handleSetBingo = (n: number, i: number) => {
-    const newBingo: number[] = [...bingo];
-    newBingo[i] = n;
+    const newBingo: bingoType[] = [...bingo];
+    newBingo[i].num = n;
     setBingo(newBingo);
   };
 
   const handleResetBingo = () => {
-    setBingo(Array(9).fill(0));
+    setBingo(
+      Array(9)
+        .fill(null)
+        .map(() => ({ num: 0, bingo: false }))
+    );
   };
 
   const bingoCheck = () => {
@@ -31,7 +40,7 @@ export const App = () => {
       [2, 4, 6],
     ];
     for (let i = 0; i < checkList.length; i++) {
-      if (bingo[checkList[i][0]] > 0 && bingo[checkList[i][1]] > 0 && bingo[checkList[i][2]] > 0) {
+      if (bingo[checkList[i][0]].num > 0 && bingo[checkList[i][1]].num > 0 && bingo[checkList[i][2]].num > 0) {
         setCheck(true);
         return;
       }

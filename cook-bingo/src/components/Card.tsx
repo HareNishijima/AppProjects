@@ -1,6 +1,8 @@
+import { bingoType } from "../data/data";
+
 type propsType = {
   index: number;
-  item: number;
+  item: bingoType;
   handleSetBingo: (n: number, i: number) => void;
 };
 
@@ -10,13 +12,14 @@ export const Card = (props: propsType) => {
   const handleSetBingo = props.handleSetBingo;
 
   const handleClick = () => {
-    handleSetBingo(item + 1, index);
+    console.log(item);
+    handleSetBingo(item.num + 1, index);
   };
 
   return (
     <div className="w-28 h-28 bg-white rounded-lg">
       <button className="w-full h-full" onClick={handleClick}>
-        {item}
+        {item.num}
       </button>
     </div>
   );
