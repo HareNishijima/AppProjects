@@ -10,10 +10,6 @@ export const App = () => {
       .map(() => ({ num: 0, bingo: false }))
   );
 
-  useEffect(() => {
-    bingoCheck();
-  }, [bingo]);
-
   const handleSetBingo = (i: number, n: number, b: boolean) => {
     const newBingo: bingoType[] = [...bingo];
     newBingo[i].num = n;
@@ -27,6 +23,7 @@ export const App = () => {
         .fill(null)
         .map(() => ({ num: 0, bingo: false }))
     );
+    setCheck(false);
   };
 
   const bingoCheck = () => {
@@ -47,10 +44,8 @@ export const App = () => {
         handleSetBingo(lj, bingo[lj].num, true);
         handleSetBingo(lk, bingo[lk].num, true);
         setCheck(true);
-        return;
       }
     }
-    setCheck(false);
   };
 
   return (
@@ -61,22 +56,22 @@ export const App = () => {
             {Array(9)
               .fill(0)
               .map((n, i) => (
-                <Card key={i} index={i} item={bingo[i]} handleSetBingo={handleSetBingo} />
+                <Card key={i} index={i} item={bingo[i]} handleSetBingo={handleSetBingo} bingoCheck={bingoCheck} />
               ))}
           </div>
         </div>
         <div className="flex flex-col w-full items-center">
-          <button className="w-1/4 h-8 shadow-md bg-orange-400 rounded  mt-4" onClick={handleResetBingo}>
+          <button className="w-1/4 h-8 shadow-md bg-white rounded mt-4" onClick={handleResetBingo}>
             reset
           </button>
           {check ? (
-            <div className="w-1/4 h-8 shadow-md bg-orange-400 rounded  mt-4" onClick={handleResetBingo}>
+            <button className="w-1/4 h-8 shadow-md bg-orange-400 rounded mt-4" onClick={handleResetBingo}>
               bingo!
-            </div>
+            </button>
           ) : (
-            <div className="w-1/4 h-8 shadow-md bg-white rounded  mt-4" onClick={handleResetBingo}>
+            <button className="w-1/4 h-8 shadow-md bg-white rounded mt-4" onClick={handleResetBingo}>
               no bingo
-            </div>
+            </button>
           )}
         </div>
       </div>

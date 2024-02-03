@@ -4,16 +4,18 @@ type propsType = {
   index: number;
   item: bingoType;
   handleSetBingo: (n: number, i: number, b: boolean) => void;
+  bingoCheck: () => void;
 };
 
 export const Card = (props: propsType) => {
   const index = props.index;
   const item = props.item;
   const handleSetBingo = props.handleSetBingo;
+  const bingoCheck = props.bingoCheck;
 
   const handleClick = () => {
-    console.log(item);
     handleSetBingo(index, item.num + 1, false);
+    bingoCheck();
   };
 
   return (
