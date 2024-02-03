@@ -3,7 +3,7 @@ import { bingoType } from "../data/data";
 type propsType = {
   index: number;
   item: bingoType;
-  handleSetBingo: (n: number, i: number) => void;
+  handleSetBingo: (n: number, i: number, b: boolean) => void;
 };
 
 export const Card = (props: propsType) => {
@@ -13,14 +13,24 @@ export const Card = (props: propsType) => {
 
   const handleClick = () => {
     console.log(item);
-    handleSetBingo(item.num + 1, index);
+    handleSetBingo(index, item.num + 1, false);
   };
 
   return (
-    <div className={`w-28 h-28 bg-white rounded-lg ${item.num>0 ? "bg-red-400" : ""}`}>
-      <button className="w-full h-full" onClick={handleClick}>
-        {item.num}
-      </button>
-    </div>
+    <>
+      {item.bingo ? (
+        <div className="w-28 h-28 rounded-lg bg-yellow-400">
+          <button className="w-full h-full" onClick={handleClick}>
+            {item.num}
+          </button>
+        </div>
+      ) : (
+        <div className={`w-28 h-28  rounded-lg ${item.num > 0 ? "bg-red-400" : "bg-white"}`}>
+          <button className="w-full h-full" onClick={handleClick}>
+            {item.num}
+          </button>
+        </div>
+      )}
+    </>
   );
 };

@@ -14,9 +14,10 @@ export const App = () => {
     bingoCheck();
   }, [bingo]);
 
-  const handleSetBingo = (n: number, i: number) => {
+  const handleSetBingo = (i: number, n: number, b: boolean) => {
     const newBingo: bingoType[] = [...bingo];
     newBingo[i].num = n;
+    newBingo[i].bingo = b;
     setBingo(newBingo);
   };
 
@@ -40,7 +41,11 @@ export const App = () => {
       [2, 4, 6],
     ];
     for (let i = 0; i < checkList.length; i++) {
-      if (bingo[checkList[i][0]].num > 0 && bingo[checkList[i][1]].num > 0 && bingo[checkList[i][2]].num > 0) {
+      const [li, lj, lk] = checkList[i];
+      if (bingo[li].num > 0 && bingo[lj].num > 0 && bingo[lk].num > 0) {
+        handleSetBingo(li, bingo[li].num, true);
+        handleSetBingo(lj, bingo[lj].num, true);
+        handleSetBingo(lk, bingo[lk].num, true);
         setCheck(true);
         return;
       }
