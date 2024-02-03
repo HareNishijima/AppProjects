@@ -17,7 +17,7 @@ export const Card = (props: propsType) => {
   };
 
   return (
-    <div className="w-28 h-28 bg-white rounded-lg">
+    <div className={`w-28 h-28 bg-white rounded-lg ${item.num>0 ? "bg-red-400" : ""}`}>
       <button className="w-full h-full" onClick={handleClick}>
         {item.num}
       </button>
