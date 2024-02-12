@@ -40,10 +40,16 @@ export const Hooks = (check:boolean, setCheck:(b:boolean)=>void, bingo:bingoType
     setBingo(newBingo);
   };
 
+	const handleClick = (index: number, item: bingoType) => {
+    handleSetBingo(index, item.num + 1, false);
+    bingoCheck();
+  };
+
 	return{
 		handleResetBingo,
 		bingoCheck,
-		handleSetBingo
+		handleSetBingo,
+		handleClick
 	}
 
 

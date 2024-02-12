@@ -14,6 +14,7 @@ export const BingoCard = () => {
   const handleResetBingo = hooks.handleResetBingo;
   const handleSetBingo = hooks.handleSetBingo;
   const bingoCheck = hooks.bingoCheck;
+  const handleClick = hooks.handleClick;
 
   return (
     <>
@@ -23,7 +24,7 @@ export const BingoCard = () => {
             {Array(9)
               .fill(0)
               .map((n, i) => (
-                <Card key={i} index={i} item={bingo[i]} handleSetBingo={handleSetBingo} bingoCheck={bingoCheck} />
+                <Card key={i} index={i} item={bingo[i]} handleClick={handleClick} />
               ))}
           </div>
         </div>
