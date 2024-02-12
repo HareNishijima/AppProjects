@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 import { useState } from "react";
-import { Hooks } from "../hooks";
+import { Stores } from "../stores";
 
 export const BingoCard = () => {
   const [check, setCheck] = useState(false);
@@ -10,10 +10,8 @@ export const BingoCard = () => {
       .map(() => ({ num: 0, bingo: false }))
   );
 
-  const hooks = Hooks(check, setCheck, bingo, setBingo);
+  const hooks = Stores(setCheck, bingo, setBingo);
   const handleResetBingo = hooks.handleResetBingo;
-  const handleSetBingo = hooks.handleSetBingo;
-  const bingoCheck = hooks.bingoCheck;
   const handleClick = hooks.handleClick;
 
   return (

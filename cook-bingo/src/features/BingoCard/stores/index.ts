@@ -1,6 +1,6 @@
 import { bingoType } from "../types/data";
 
-export const Hooks = (check:boolean, setCheck:(b:boolean)=>void, bingo:bingoType[], setBingo:(b:bingoType[])=>void) =>{
+export const Stores = (setCheck:(b:boolean)=>void, bingo:bingoType[], setBingo:(b:bingoType[])=>void) =>{
 
 	const handleResetBingo = () => {
     setBingo(
