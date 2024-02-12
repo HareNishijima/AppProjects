@@ -1,4 +1,4 @@
-import { bingoType } from "../data/data";
+import { bingoType } from "../types/data";
 
 type propsType = {
   index: number;

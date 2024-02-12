@@ -1,8 +1,8 @@
-import { Card } from "./components/Card";
-import { useState, useEffect } from "react";
-import { bingoType } from "./data/data";
+import { Card } from "./Card";
+import { useState } from "react";
+import { Hooks } from "../hooks";
 
-export const App = () => {
+export const BingoCard = () => {
   const [check, setCheck] = useState(false);
   const [bingo, setBingo] = useState(
     Array(9)
@@ -10,43 +10,10 @@ export const App = () => {
       .map(() => ({ num: 0, bingo: false }))
   );
 
-  const handleSetBingo = (i: number, n: number, b: boolean) => {
-    const newBingo: bingoType[] = [...bingo];
-    newBingo[i].num = n;
-    newBingo[i].bingo = b;
-    setBingo(newBingo);
-  };
-
-  const handleResetBingo = () => {
-    setBingo(
-      Array(9)
-        .fill(null)
-        .map(() => ({ num: 0, bingo: false }))
-    );
-    setCheck(false);
-  };
-
-  const bingoCheck = () => {
-    const checkList = [
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < checkList.length; i++) {
-      const [li, lj, lk] = checkList[i];
-      if (bingo[li].num > 0 && bingo[lj].num > 0 && bingo[lk].num > 0) {
-        handleSetBingo(li, bingo[li].num, true);
-        handleSetBingo(lj, bingo[lj].num, true);
-        handleSetBingo(lk, bingo[lk].num, true);
-        setCheck(true);
-      }
-    }
-  };
+  const hooks = Hooks(check, setCheck, bingo, setBingo);
+  const handleResetBingo = hooks.handleResetBingo;
+  const handleSetBingo = hooks.handleSetBingo;
+  const bingoCheck = hooks.bingoCheck;
 
   return (
     <>
