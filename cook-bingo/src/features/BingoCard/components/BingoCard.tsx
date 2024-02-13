@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 import { useState } from "react";
-import { Stores } from "../stores";
+import { Stores } from "../stores/BingoCard";
 
 export const BingoCard = () => {
   const [check, setCheck] = useState(false);

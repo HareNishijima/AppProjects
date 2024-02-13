@@ -1,4 +1,4 @@
-import { bingoType } from "../types/data";
+import { bingoType } from "../types/BingoCard";
 
 export const Stores = (setCheck:(b:boolean)=>void, bingo:bingoType[], setBingo:(b:bingoType[])=>void) =>{
 
