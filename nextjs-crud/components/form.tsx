@@ -52,7 +52,7 @@ export const Form = (props: { loadPosts: () => void }) => {
       <div className="py-2">
         <div className="bg-white border rounded p-2">
           <div className="flex">
-            <div className="relative flex justify-center items-center h-14 w-14">
+            <div className="relative flex justify-center items-center h-16 w-16">
               <button type="button" onClick={handleEmojiPicker} className="text-4xl">
                 {postTop}
               </button>
@@ -60,20 +60,20 @@ export const Form = (props: { loadPosts: () => void }) => {
                 {emojiPickerEnabled ? <Picker onEmojiSelect={handleEmojiSelect} /> : <></>}
               </div>
             </div>
-            <div className="flex">
+            <div className="flex grow">
               <textarea
                 name="content"
-                className="text-xl h-full whitespace-pre-wrap outline-none"
+                className="text-xl h-full w-full whitespace-pre-wrap outline-none"
                 placeholder="input text"
                 value={postContent}
                 onChange={(e) => setPostContent(e.target.value)}
               />
             </div>
-          </div>
-          <div className="flex justify-end">
-            <button type="submit" className="bg-sky-400 rounded-full w-16 h-8 flex justify-center">
-              <PaperAirplaneIcon className="w-6 h-full text-white" />
-            </button>
+            <div className="flex gap-x-2 items-end h-16 w-16">
+              <button type="submit" className="bg-sky-400 rounded-full h-8 w-full flex justify-center">
+                <PaperAirplaneIcon className="w-6 h-full text-white" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

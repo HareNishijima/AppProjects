@@ -67,7 +67,7 @@ export const Post = (props: PropsData) => {
       {editPost ? (
         <div className="py-2">
           <li className="flex justify-between bg-blue-100 border rounded p-2">
-            <div className="flex justify-center items-center h-14 w-14">
+            <div className="flex justify-center items-center h-16 w-16">
               <button type="button" onClick={handleEmojiPicker} className="text-4xl">
                 {editTop}
               </button>
@@ -84,7 +84,7 @@ export const Post = (props: PropsData) => {
                 onChange={(e) => setEditContent(e.target.value)}
               />
             </div>
-            <div className="flex gap-x-2 items-end">
+            <div className="flex gap-x-2 items-end h-16 w-16">
               <button
                 onClick={() => {
                   setEditTop(post.top);
@@ -97,9 +97,9 @@ export const Post = (props: PropsData) => {
               <button
                 type="submit"
                 onClick={() => handleUpdateButton()}
-                className="bg-sky-400 rounded-full w-16 h-8 flex justify-center"
+                className="bg-sky-400 rounded-full h-6 w-6 flex justify-center"
               >
-                <PaperAirplaneIcon className="w-6 h-full text-white" />
+                <PaperAirplaneIcon className="h-6 w-6 text-white" />
               </button>
             </div>
           </li>
@@ -107,13 +107,13 @@ export const Post = (props: PropsData) => {
       ) : (
         <div className="py-2">
           <li className="flex justify-between bg-white border rounded p-2">
-            <div className="flex justify-center items-center h-14 w-14">
+            <div className="flex justify-center items-center h-16 w-16">
               <div className="text-4xl">{post.top}</div>
             </div>
             <div className="flex grow">
               <div className="text-xl h-full whitespace-pre-wrap">{post.content}</div>
             </div>
-            <div className="flex gap-x-2 items-end">
+            <div className="flex gap-x-2 items-end h-16 w-16">
               <button onClick={() => setEditPost(true)}>
                 <PencilIconOutline className="h-6 w-6 text-gray-400" />
               </button>
