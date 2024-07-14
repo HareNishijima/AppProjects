@@ -31,6 +31,14 @@ const dialog2 = ref(false);
       >
         <template v-slot:actions>
           <v-btn class="ms-auto" text="Ok" @click="dialog2 = false"></v-btn>
+          <v-btn
+            class="ms-auto"
+            text="All Ok"
+            @click="
+              dialog2 = false;
+              dialog = false;
+            "
+          ></v-btn>
         </template>
       </v-card>
     </v-dialog>
