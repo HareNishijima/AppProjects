@@ -43,7 +43,7 @@ const dialog2 = ref < Boolean > false;
       </template>
 
       <template v-slot:default="{ isActive2 }">
-        <v-card title="Dialog">
+        <v-card title="Dialog2">
           <v-card-text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
