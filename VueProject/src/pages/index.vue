@@ -15,10 +15,12 @@ const dialog2 = ref(false);
         text="Your application will relaunch automatically after the update is complete."
         title="Update in progress"
       >
-        <template v-slot:actions>
-          <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
-        </template>
-        <v-btn @click="dialog2 = true"> Open Dialog </v-btn>
+        <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
+        <v-btn
+          class="ms-auto"
+          text="Open Dialog"
+          @click="dialog2 = true"
+        ></v-btn>
       </v-card>
     </v-dialog>
 
@@ -29,17 +31,15 @@ const dialog2 = ref(false);
         text="Your application will relaunch automatically after the update is complete."
         title="Update in progress"
       >
-        <template v-slot:actions>
-          <v-btn class="ms-auto" text="Ok" @click="dialog2 = false"></v-btn>
-          <v-btn
-            class="ms-auto"
-            text="All Ok"
-            @click="
-              dialog2 = false;
-              dialog = false;
-            "
-          ></v-btn>
-        </template>
+        <v-btn class="ms-auto" text="Ok" @click="dialog2 = false"></v-btn>
+        <v-btn
+          class="ms-auto"
+          text="All Ok"
+          @click="
+            dialog2 = false;
+            dialog = false;
+          "
+        ></v-btn>
       </v-card>
     </v-dialog>
   </div>
