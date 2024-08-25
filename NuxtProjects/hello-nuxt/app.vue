@@ -30,6 +30,13 @@ const totalPoint = computed((): number => {
   }
   return total;
 });
+
+const onIncrementPoint = (id: number): void => {
+  const member = memberList.value.get(id);
+  if (member != undefined) {
+    member.point++;
+  }
+};
 </script>
 
 <template>
@@ -44,6 +51,7 @@ const totalPoint = computed((): number => {
       :email="member.email"
       :point="member.point"
       :note="member.note"
+      @incrementPoint="onIncrementPoint"
     ></OneSection>
   </section>
 </template>
